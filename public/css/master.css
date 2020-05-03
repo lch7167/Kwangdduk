@@ -1,0 +1,161 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+.breadcrumb-item {
+  font-size: 0.8em !important;
+}
+.ellipsis{
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.board-table {
+  table-layout: fixed;
+}
+.board-table .numId,
+.board-table .views{
+  width: 60px;
+  text-align: center;
+}
+.board-table .author,
+.board-table .date {
+  width: 100px;
+  text-align: center;
+}
+.board-table .title-container:hover .title-comments,
+.board-table .title-container:hover .title-text
+{
+  text-decoration: underline;
+}
+
+.post-body,
+.comment-text {
+  white-space: pre-line;
+}
+.post-info{
+  font-size: 0.8em;
+}
+
+.user-form {
+  width: 400px;
+}
+
+.post-index-tool {
+  max-width: 450px;
+}
+.post-index-tool input[type='text']{
+  max-width: 130px;
+}
+
+.highlighted {
+  background-color: yellow;
+}
+
+.comment-edit,
+.comment-reply,
+.comment-edit-enabled .comment-show {
+  display:none;
+}
+
+.comment-edit-enabled .comment-edit,
+.comment-reply-enabled .comment-reply {
+  display:inherit;
+}
+.left{
+    width:15%;
+    height:855px;
+    background-color:#f9622e;
+    color:white;
+    overflow:hidden;
+    float:left;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5em;
+}
+
+.font1{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+}
+
+.sidebar-nav {
+           top: 0;
+           left:0px;
+           width: 100px;
+           margin:0;
+
+           padding: 0;
+           list-style: none;
+    }
+
+    .sidebar-nav li {
+           text-indent: 20px;
+           line-height: 40px;
+    }
+
+    .sidebar-nav li a {
+           display: block;
+           text-decoration: none;
+           color: #999999;
+    }
+
+    .sidebar-nav li a:hover {
+           text-decoration: none;
+           color: #000;
+           background: rgba(255,255,255,0.2);
+    }
+
+    .sidebar-nav li a:active,
+    .sidebar-nav li a:focus {
+           text-decoration: none;
+    }
+
+    .sidebar-nav > .sidebar-brand {
+           height: 65px;
+           font-size: 18px;
+           line-height: 60px;
+    }
+
+    .sidebar-nav > .sidebar-brand a {
+           color: #999999;
+    }
+
+    .sidebar-nav > .sidebar-brand a:hover {
+           color: #000;
+           background: none;
+    }
+select {
+width: 200px;
+padding: .8em .5em;
+border: 3px solid #999;
+font-family: inherit;
+background: url('arrow.jpg') no-repeat 95% 50%;
+border-radius: 0px;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+color: #999999;
+}
+
+select::-ms-expand {
+    display: none;
+}
+/*시군구선택*/
+section {
+padding-top: 5rem;
+padding-bottom: 5rem;
+}
+.map{
+  height:50%;
+  width:60%;
+}
+.login-form{
+  position: absolute;
+  width:auto;
+  height:auto;
+  top: 50%;
+  left: 50%;
+  margin: auto;
+}
