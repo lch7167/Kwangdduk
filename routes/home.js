@@ -92,6 +92,7 @@ router.get('/test',function(req,res,next){
          path : path
        });
     next();
+  });
     }
 
   //    fs.readFile('first-json.json', 'utf-8', function(err,data){
