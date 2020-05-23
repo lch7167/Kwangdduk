@@ -1,0 +1,86 @@
+<br>
+<br>
+<div class="col-12"> # 태그별 인기 검색 리스트 </div>
+<br>
+
+<% if(dataexist == 'true'){ %>
+<div class="row">
+  <div class="col-lg-3 col-3">
+      <a>   # 카페 </a>
+      <br>
+      <br>
+  <% for(var i=0; i<5; i++) { %>
+
+  <div class="card" style="width: 150px; height:20%; margin-down:2.5%; margin-left:5%;">
+    <img class="card-img-top" src="<%= crawling[i].img %>" alt="IMAGE">
+    <div class="card-body">
+      <a class="crawlingfont"><%= crawling[i].title %></a>  <br>
+      <a class="crwalingfont" href='<%= crawling[i].href %>'>자세히</a>
+
+    </div>
+  </div>
+
+  <% } %>
+</div>
+<div class="col-lg-3 col-3">
+    <a>   # 맛집 </a>
+    <br>
+    <br>
+<% for(var i=0; i<5; i++) { %>
+
+<div class="card" style="width: 150px; height:20%; margin-down:2.5%; margin-left:5%;">
+  <img class="card-img-top" src="<%= crawling2[i].img %>" alt="Card image cap">
+  <div class="card-body">
+    <a class="crawlingfont" ><%= crawling2[i].title %></a><br>
+    <a class="crwalingfont" href='<%= crawling2[i].href %>'>자세히</a>
+
+
+</div>
+</div>
+<% } %>
+</div>
+<div class="col-lg-1 col-1"></div>
+
+<div class="col-lg-5 col-5">
+  <div class="input-group">
+  <input type="text" id='text' class="form-control" onkeydown="enterSearch()" placeholder="검색 키워드를 입력하세요!">
+  <span class="input-group-btn">
+    <button class="btn btn-secondary" type="button" onclick="myFunction()">찾기</button>
+  </span>
+</div>
+<img src="<%= path %>" width="100%" height="75%">
+</div>
+
+
+
+<br>
+
+
+  <% } else { %>
+
+
+    <div class="col-12 alert alert-warning alert-dismissible fade show" role="alert">
+      죄송합니다! <strong>지역을 올바르게 선택</strong>하신 후에 다시한번 접속해주시면 감사하겠습니다.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+<% } %>
+
+</div>
+
+
+<script>
+  function enterSearch() {
+    if(event.keyCode == 13){
+        myFunction();  // 실행할 이벤트
+    }
+}
+function myFunction() {
+    var x = document.getElementById("text").value;
+    //window.location.href = "https://store.naver.com/restaurants/list?page=1&query="+x;
+    console.log("??????????");
+    window.open('https://store.naver.com/restaurants/list?page=1&query='+'<%= gugun %>' + x,x,'widhth=1000, height=500,location=no,status=no,scrollbars=no');
+}
+</script>

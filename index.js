@@ -7,6 +7,9 @@ var session = require('express-session');
 var passport = require('./config/passport');
 var util = require('./util');
 var app = express();
+var fs = require('fs');
+const axios = require("axios");
+const cheerio = require("cheerio");
 
 // DB setting
 mongoose.set('useNewUrlParser', true);
@@ -43,6 +46,7 @@ app.use(function(req,res,next){
 });
 
 // Routes
+app.use(express.static('views/partials/img'))
 app.use('/', require('./routes/home'));
 app.use('/posts', util.getPostQueryString, require('./routes/posts'));
 app.use('/users', require('./routes/users'));

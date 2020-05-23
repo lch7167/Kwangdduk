@@ -34,7 +34,7 @@ util.noPermission = function(req, res){
 }
 
 util.getPostQueryString = function(req, res, next){
-  res.locals.getPostQueryString = function(isAppended=false, overwrites={}){    
+  res.locals.getPostQueryString = function(isAppended=false, overwrites={}){
     var queryString = '';
     var queryArray = [];
     var page = overwrites.page?overwrites.page:(req.query.page?req.query.page:'');
