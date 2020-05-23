@@ -1,6 +1,6 @@
 <br>
 <br>
-<div class="col-12"> # 태그별 인기 검색 리스트 </div>
+<div class="col-12"> # <strong><%= gugun %></strong> # 태그별 인기 검색 리스트 </div>
 <br>
 
 <% if(dataexist == 'true'){ %>
@@ -11,7 +11,7 @@
       <br>
   <% for(var i=0; i<5; i++) { %>
 
-  <div class="card" style="width: 150px; height:20%; margin-down:2.5%; margin-left:5%;">
+  <div class="card" style="width: 70%; height:20%; margin-down:2.5%; margin-left:5%;">
     <img class="card-img-top" src="<%= crawling[i].img %>" alt="IMAGE">
     <div class="card-body">
       <a class="crawlingfont"><%= crawling[i].title %></a>  <br>
@@ -28,7 +28,7 @@
     <br>
 <% for(var i=0; i<5; i++) { %>
 
-<div class="card" style="width: 150px; height:20%; margin-down:2.5%; margin-left:5%;">
+<div class="card" style="width: 70%; height:20%; margin-down:2.5%; margin-left:5%;">
   <img class="card-img-top" src="<%= crawling2[i].img %>" alt="Card image cap">
   <div class="card-body">
     <a class="crawlingfont" ><%= crawling2[i].title %></a><br>
@@ -43,12 +43,16 @@
 
 <div class="col-lg-5 col-5">
   <div class="input-group">
-  <input type="text" id='text' class="form-control" onkeydown="enterSearch()" placeholder="검색 키워드를 입력하세요!">
+  <input type="text" id='text' class="form-control" onkeydown="enterSearch()" placeholder="카테고리를 입력하세요!">
   <span class="input-group-btn">
     <button class="btn btn-secondary" type="button" onclick="myFunction()">찾기</button>
   </span>
 </div>
-<img src="<%= path %>" width="100%" height="75%">
+<br>
+<a> <strong><%= gugun %></strong> 카테고리 분석자료 </a>
+<br>
+<br>
+<img src="<%= path %>" width="80%" height="75%">
 </div>
 
 
@@ -80,7 +84,6 @@
 function myFunction() {
     var x = document.getElementById("text").value;
     //window.location.href = "https://store.naver.com/restaurants/list?page=1&query="+x;
-    console.log("??????????");
     window.open('https://store.naver.com/restaurants/list?page=1&query='+'<%= gugun %>' + x,x,'widhth=1000, height=500,location=no,status=no,scrollbars=no');
 }
 </script>

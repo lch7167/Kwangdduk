@@ -17,7 +17,7 @@
         <a class="col-lg-3"></a>
         <select class="col-lg-3 d-block" for="sidoname" name="sido1" id="sido1" ></select>
         <select class="col-lg-3 d-block" for="gugunname"name="gugun1" id="gugun1" ></select>
-        <button class="col-lg-3 d-block" onclick="changediv()">지역선택</button>
+        <button class="button col-lg-3" onclick="changediv()">검색</button>
       </div>
           </div>
 
@@ -71,18 +71,25 @@
 
 
       <div class="col-12 alert alert-warning alert-dismissible fade show" role="alert">
-        죄송합니다! <strong>지역을 올바르게 선택</strong>하신 후에 다시한번 접속해주시면 감사하겠습니다.
+        죄송합니다! <strong>지역을 올바르게 선택</strong>하신 후에 다시한번 검색해주시면 감사하겠습니다.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <% } else if(option == 'cerror') { %>
+  <div class="col-12 alert alert-warning alert-dismissible fade show" role="alert">
+    죄송합니다! <strong>'전체'</strong>항목에서는 카테고리별 분석을 지원하지 않습니다.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 
     <% } else if(option =='hotplace'){ %>
       <% if(dataexist =='false') { %>
         <div class="col-12 alert alert-warning alert-dismissible fade show" role="alert">
           죄송합니다! <strong>지역을 올바르게 선택</strong>하신 후에 다시한번 접속해주시면 감사하겠습니다.
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">3</span>
           </button>
         </div>
       <% }else{ %>
@@ -219,8 +226,7 @@ else if('<%= option %>' == 'categori'){
   location.href="/categori?sido=" + document.getElementById("sido1").value + "&gugun=" + document.getElementById("gugun1").value;
 }
 else if('<%= option %>' == 'error'){
-  alert("메인으로 돌아갑니다");
-  location.href='/about';
+location.href="/top10?sido=" + document.getElementById("sido1").value + "&gugun=" + document.getElementById("gugun1").value;
 }else{
  location.href="/top10?sido=" + document.getElementById("sido1").value + "&gugun=" + document.getElementById("gugun1").value;
 }

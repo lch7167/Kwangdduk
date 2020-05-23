@@ -24,15 +24,6 @@ var gugun_list = [
   "전체","제주시","서귀포시"
 ];
 
-const tonN_path_list = [
-'../partials/local/seoul/seoul_sisna_topn', '../partials/local/seoul/seoul_dongdaemoon_topn','../partials/local/seoul/seoul_bukchon_topn','../partials/local/seoul/seoul_abgujeong_topn','../partials/local/seoul/seoul_itaewon_topn','../partials/local/seoul/seoul_jonggak_topn', '../partials/local/seoul/seoul_coex_topn','../partials/local/seoul/seoul_seocho_topn', '../partials/local/seoul/seoul_seoulstation_topn','../partials/local/seoul/seoul_sinchon_topn',
-'../partials/local/yongin/yongin_all','../partials/local/yongin/yongin_everland_topn',
-'../partials/local/incheon/incheon_all','../partials/local/incheon/incheon_ganseok_topn','../partials/local/incheon/incheon_bupyung_topn','../partials/local/incheon/incheon_yonghyun_topn',
-'../partials/local/ansan/ansan_all','../partials/local/ansan/ansan_gojan_topn','../partials/local/ansan/ansan_junang_topn','../partials/local/ansan/ansan_erika_topn',
-'../partials/local/namyangju/namyangju_all','../partials/local/namyangju/namyangju_bukhangang_topn','../partials/local/namyangju/namyangju_toegyewon_topn','../partials/local/namyangju/namyangju_hopyeong_topn',
-'../partials/local/gapyung/gapyung_all','../partials/local/gapyung/gapyung_namisum_topn','../partials/local/gapyung/gapyung_achimgoyo_topn'
-
-]
 var sido_selected = '';
 var gugun_selected = '';
 //var json = require('../../first-json.json');
@@ -79,13 +70,7 @@ router.get('/test',function(req,res,next){
         var test1 = req.query.sido;
         var test2 = req.query.gugun;
 
-        var testFolder = './views/partials/twitter/' + change_sido_KtoE(test1);
-        fs.readdir(testFolder,function(error,filelist){
-          //console.log(filelist[match_gugun_list(test1,test2)+1]);
-          var path = '../partials/twitter/'+ change_sido_KtoE(test1) +'/' + filelist[match_gugun_list(test1,test2)];
-          console.log(path);
-
-    if(test1 =='지역 선택'){
+    if(test1 =='지역 선택' || test1 =='unknown'){
       res.render('home/about',{
         sido : 'unknown',
         gugun: 'unknown',
@@ -95,7 +80,11 @@ router.get('/test',function(req,res,next){
      next();
     }
     else{
-
+      var testFolder = './views/partials/twitter/' + change_sido_KtoE(test1);
+      fs.readdir(testFolder,function(error,filelist){
+        //console.log(filelist[match_gugun_list(test1,test2)+1]);
+        var path = '../partials/twitter/'+ change_sido_KtoE(test1) +'/' + filelist[match_gugun_list(test1,test2)];
+        console.log(path);
        res.render('home/about',{
          sido: test1,
          gugun : test2,
@@ -104,7 +93,6 @@ router.get('/test',function(req,res,next){
        });
     next();
     }
-        });
 
   //    fs.readFile('first-json.json', 'utf-8', function(err,data){
   //      var rData = JSON.stringify(data);
@@ -117,23 +105,32 @@ router.get('/categori',function(req,res,next){
 
         var test1 = req.query.sido;
         var test2 = req.query.gugun;
+    if(test2 == '전체'){
+      res.render('home/about',{
+        sido : test1,
+        gugun : test2,
+        option : 'cerror',
+        path : '../partials/twitter/all'
+      });
+      next();
+    }
 
-        var testFolder = './views/partials/foursquare/' + change_sido_KtoE(test1);
-        fs.readdir(testFolder,function(error,filelist){
-          //console.log(filelist[match_gugun_list(test1,test2)+1]);
-          var path = '../partials/foursquare/'+ change_sido_KtoE(test1) +'/' + filelist[match_gugun_list(test1,test2)];
-          console.log(path);
-
-    if(test1 =='unknown'){
+    if(test2 =='unknown'){
       res.render('home/about',{
         sido : 'unknown',
         gugun: 'unknown',
         option: 'error',
-        path : path
+        path : '../partials/twitter/all'
       });
      next();
     }
     else{
+      var testFolder = './views/partials/foursquare/' + change_sido_KtoE(test1);
+      fs.readdir(testFolder,function(error,filelist){
+        //console.log(filelist[match_gugun_list(test1,test2)+1]);
+        var path = '../partials/foursquare/'+ change_sido_KtoE(test1) +'/' + filelist[match_gugun_list(test1,test2)];
+        console.log(path);
+
         var partials = "unknown";
        res.render('home/about',{
          sido: test1,
@@ -142,9 +139,8 @@ router.get('/categori',function(req,res,next){
          path : path
        });
     next();
+  });
     }
-        });
-
 });
 router.get('/top10',function(req,res,next){
 
@@ -152,23 +148,23 @@ router.get('/top10',function(req,res,next){
       var test1 = req.query.sido;
       var test2 = req.query.gugun;
 
-      var testFolder = './views/partials/twitter/' + change_sido_KtoE(test1);
-      fs.readdir(testFolder,function(error,filelist){
-        //console.log(filelist[match_gugun_list(test1,test2)+1]);
-        var path = '../partials/twitter/'+ change_sido_KtoE(test1) +'/' + filelist[match_gugun_list(test1,test2)];
-        console.log(path);
 
-  if(test1 =='unknown'){
+  if(test1 =='unknown' || test1=='지역 구분'){
     res.render('home/about',{
       sido : 'unknown',
       gugun: 'unknown',
       option: 'error',
-      path : path
+      path : '../partials/twitter/all'
     });
    next();
   }
   else{
-      var partials = "unknown";
+    var testFolder = './views/partials/twitter/' + change_sido_KtoE(test1);
+    fs.readdir(testFolder,function(error,filelist){
+      //console.log(filelist[match_gugun_list(test1,test2)+1]);
+      var path = '../partials/twitter/'+ change_sido_KtoE(test1) +'/' + filelist[match_gugun_list(test1,test2)];
+      console.log(path);
+
      res.render('home/about',{
        sido: test1,
        gugun : test2,
@@ -176,8 +172,8 @@ router.get('/top10',function(req,res,next){
        path : path
      });
   next();
+});
   }
-      });
       /*
       var path = '../partials/local/seoul/seoul_itaewon_topn'
       console.log('../partials/local/' + change_sido_KtoE(test1));
@@ -200,6 +196,17 @@ router.get('/top10',function(req,res,next){
 router.get('/hotplace',function(req,res,next){
   var query_sido = req.query.sido;
   var query_gugun = change_for_crawling(req.query.sido,req.query.gugun);
+  var query_gugun_for_path = req.query.gugun;
+
+  if(query_sido == 'unknown' || query_sido =='지역 구분'){
+    res.render('home/about',{
+      sido : 'unknown',
+      gugun: 'unknown',
+      option: 'error',
+      path : '../partials/twitter/all'
+    });
+    next();
+  }
   var test1 = req.query.sido;
   var test2 = req.query.gugun;
 
@@ -304,11 +311,11 @@ router.get('/hotplace',function(req,res,next){
           var testFolder = './views/partials/img/' + change_sido_KtoE(query_sido);
 
          fs.readdir(testFolder,function(error,filelist){
-                          log('13');
+                          log('13'+filelist[match_gugun_list(query_sido,query_gugun_for_path)]);
 
                            //console.log(filelist[match_gugun_list(test1,test2)+1]);
-                           let path = change_sido_KtoE(query_sido) +'/' + filelist[match_gugun_list(query_sido,query_gugun)];
-
+                           let path = change_sido_KtoE(query_sido) +'/' + filelist[match_gugun_list(query_sido,query_gugun_for_path)];
+                          console.log("PATH :"+path);
                            callback(null,path);
                         });
 
