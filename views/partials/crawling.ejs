@@ -5,54 +5,63 @@
 
 <% if(dataexist == 'true'){ %>
 <div class="row">
-  <div class="col-lg-3 col-3">
+  <div class="col-lg-3 col-6">
       <a>   # 카페 </a>
       <br>
       <br>
   <% for(var i=0; i<5; i++) { %>
 
   <div class="card" style="width: 70%; height:20%; margin-down:2.5%; margin-left:5%;">
-    <img class="card-img-top" src="<%= crawling[i].img %>" alt="IMAGE">
+    <div class="card-header">
+      <%= crawling[i].title %>
+    </div>
+    <% if(crawling[i].img == undefined || crawling[i].img == 'undefined') { %>
+    <img src="camera.png" class="card-img-top" alt="No image">
+    <% } else  { %>
+    <img class="card-img-top" src="<%= crawling[i].img %>" alt="Card image cap">
+    <% } %>
     <div class="card-body">
-      <a class="crawlingfont"><%= crawling[i].title %></a>  <br>
-      <a class="crwalingfont" href='<%= crawling[i].href %>'>자세히</a>
-
+       <a class="btn btn-dark" alt="<%= crawling[i].href %>" onclick="window.open('<%= crawling[i].href %>','자세히','widhth=1000, height=500,location=no,status=no,scrollbars=no');" style="color:#ffffff;">자세히 보기</a>
     </div>
   </div>
 
   <% } %>
 </div>
-<div class="col-lg-3 col-3">
+<div class="col-lg-3 col-6">
     <a>   # 맛집 </a>
     <br>
     <br>
 <% for(var i=0; i<5; i++) { %>
 
 <div class="card" style="width: 70%; height:20%; margin-down:2.5%; margin-left:5%;">
+  <div class="card-header">
+    <%= crawling2[i].title %>
+  </div>
+  <% if(crawling2[i].img == undefined || crawling2[i].img == 'undefined') { %>
+  <img class="card-img-top" src="../camera.png" alt="No image">
+  <% } else  { %>
   <img class="card-img-top" src="<%= crawling2[i].img %>" alt="Card image cap">
+  <% } %>
   <div class="card-body">
-    <a class="crawlingfont" ><%= crawling2[i].title %></a><br>
-    <a class="crwalingfont" href='<%= crawling2[i].href %>'>자세히</a>
-
+    <a class="btn btn-dark" alt="<%= crawling2[i].href %>" onclick="window.open('<%= crawling2[i].href %>','자세히','widhth=1000, height=500,location=no,status=no,scrollbars=no');" style="color:#ffffff;">자세히 보기</a>
 
 </div>
 </div>
 <% } %>
 </div>
-<div class="col-lg-1 col-1"></div>
-
-<div class="col-lg-5 col-5">
-  <div class="input-group">
+<div class="col-lg-5 col-12">
+  <div class="input-group" style="margin-top:10%;">
+    <br><br>
   <input type="text" id='text' class="form-control" onkeydown="enterSearch()" placeholder="카테고리를 입력하세요!">
   <span class="input-group-btn">
     <button class="btn btn-secondary" type="button" onclick="myFunction()">찾기</button>
   </span>
 </div>
 <br>
-<a> <strong><%= gugun %></strong> 카테고리 분석자료 </a>
+<a style="margin-left:10%"><strong><%= gugun %></strong> 카테고리 분석자료 </a>
 <br>
 <br>
-<img src="<%= path %>" width="80%" height="75%">
+<img src="<%= path %>" width="80%" height="500px" style="margin-left:10%">
 </div>
 
 
@@ -76,6 +85,7 @@
 
 
 <script>
+  $('document').ready(function){
   function enterSearch() {
     if(event.keyCode == 13){
         myFunction();  // 실행할 이벤트
@@ -85,5 +95,6 @@ function myFunction() {
     var x = document.getElementById("text").value;
     //window.location.href = "https://store.naver.com/restaurants/list?page=1&query="+x;
     window.open('https://store.naver.com/restaurants/list?page=1&query='+'<%= gugun %>' + x,x,'widhth=1000, height=500,location=no,status=no,scrollbars=no');
+}
 }
 </script>

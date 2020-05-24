@@ -606,7 +606,7 @@ function change_for_crawling(k_sido,k_gugun){
   else if(k_gugun =='백석동'){
     return '일산 백석동';
   }
-  else if(k_gugun =='전북대학교' || k_gugun =='전주대학교'){
+  else if(k_gugun =='전북대학교' || k_gugun =='전주대학교' || k_gugun =='효자공원'){
     return '전주';
   }
   else{
