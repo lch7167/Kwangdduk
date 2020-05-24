@@ -85,8 +85,7 @@
 
 
 <script>
-  $('document').ready(function){
-  function enterSearch() {
+function enterSearch() {
     if(event.keyCode == 13){
         myFunction();  // 실행할 이벤트
     }
@@ -95,6 +94,5 @@ function myFunction() {
     var x = document.getElementById("text").value;
     //window.location.href = "https://store.naver.com/restaurants/list?page=1&query="+x;
     window.open('https://store.naver.com/restaurants/list?page=1&query='+'<%= gugun %>' + x,x,'widhth=1000, height=500,location=no,status=no,scrollbars=no');
-}
 }
 </script>
