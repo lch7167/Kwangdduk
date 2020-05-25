@@ -226,7 +226,7 @@ router.get('/hotplace',function(req,res,next){
               const getHtml = async () => {
                 try {
                   log('0');
-                  return await axios.get("https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q="+ urlencode(findQuery(query_sido,query_gugun)) + urlencode('맛집'));
+                  return await axios.get("https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q="+ urlencode(findQuery(query_sido,query_gugun)) + urlencode(query_category));
                 } catch (error) {
                   console.error("error timing" + error);
                 }
