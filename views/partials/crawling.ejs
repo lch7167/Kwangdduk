@@ -5,7 +5,7 @@
 <% if(dataexist == 'true'){ %>
 <div class="row">
   <div class="col-lg-3 col-6">
-      <div class="alert aelrt-secondary" role="alert"># 카페</div>
+      <div class="alert aelrt-secondary" role="alert">&emsp;&emsp;# 카페</div>
       <br>
       <br>
   <% for(var i=0; i<5; i++) { %>
@@ -20,14 +20,14 @@
     <img class="card-img-top" src="<%= crawling[i].img %>" alt="Card image cap">
     <% } %>
     <div class="card-body">
-       <a class="btn btn-dark" alt="<%= crawling[i].href %>" onclick="window.open('<%= crawling[i].href %>','자세히','widhth=1000, height=500,location=no,status=no,scrollbars=no');" style="color:#ffffff;">자세히 보기</a>
+       <a class="btn btn-dark" alt="<%= crawling[i].href %>" onclick="window.open('<%= crawling[i].href %>','자세히','widhth=1000, height=500,location=no,status=no,scrollbars=no');" style="color:#ffffff;">자세히</a>
     </div>
   </div>
 <br>
   <% } %>
 </div>
 <div class="col-lg-3 col-6">
-    <div class="alert aelrt-secondary" role="alert"># 맛집</div>
+    <div class="alert aelrt-secondary" role="alert">&emsp;&emsp;# 맛집</div>
     <br>
     <br>
 <% for(var i=0; i<5; i++) { %>
@@ -42,7 +42,7 @@
   <img class="card-img-top" src="<%= crawling2[i].img %>" alt="Card image cap">
   <% } %>
   <div class="card-body">
-    <a class="btn btn-dark" alt="<%= crawling2[i].href %>" onclick="window.open('<%= crawling2[i].href %>','자세히','widhth=1000, height=500,location=no,status=no,scrollbars=no');" style="color:#ffffff;">자세히 보기</a>
+    <a class="btn btn-dark" alt="<%= crawling2[i].href %>" onclick="window.open('<%= crawling2[i].href %>','자세히','widhth=1000, height=500,location=no,status=no,scrollbars=no');" style="color:#ffffff;">자세히</a>
 
 </div>
 </div>
