@@ -6,8 +6,6 @@
 <div class="row">
   <div class="col-lg-3 col-6">
       <div class="alert aelrt-secondary" role="alert">&emsp;&emsp;# 카페</div>
-      <br>
-      <br>
   <% for(var i=0; i<5; i++) { %>
 
   <div class="card" style="width: 70%; height:18%; margin-down:5%; margin-left:15%;">
@@ -20,7 +18,7 @@
     <img class="card-img-top" src="<%= crawling[i].img %>" alt="Card image cap">
     <% } %>
     <div class="card-body">
-       <a class="btn btn-dark" href="<%= crawling[i].href%>" alt="<%= crawling[i].href %>" onclick="window.open('<%= crawling[i].href %>','자세히','widhth=1000, height=500,location=no,status=no,scrollbars=no');" style="color:#ffffff;">자세히</a>
+       <a class="btn btn-dark" href="<%= crawling[i].href %>" alt="<%= crawling[i].href %>" style="color:#ffffff;">자세히</a>
     </div>
   </div>
 <br>
@@ -28,8 +26,6 @@
 </div>
 <div class="col-lg-3 col-6">
     <div class="alert aelrt-secondary" role="alert">&emsp;&emsp;# 맛집</div>
-    <br>
-    <br>
 <% for(var i=0; i<5; i++) { %>
 
 <div class="card" style="width: 70%; height:18%; margin-down:5%; margin-left:15%;">
