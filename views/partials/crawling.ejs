@@ -1,17 +1,16 @@
 <br>
-<br>
-<div class="col-12"> # <strong><%= gugun %></strong> # 태그별 인기 검색 리스트 </div>
+<div class="col-12 alert alert-secondary"> # <strong><%= gugun %></strong> # 태그별 인기 검색 리스트 </div>
 <br>
 
 <% if(dataexist == 'true'){ %>
 <div class="row">
   <div class="col-lg-3 col-6">
-      <a>   # 카페 </a>
+      <div class="alert aelrt-secondary" role="alert"># 카페</div>
       <br>
       <br>
   <% for(var i=0; i<5; i++) { %>
 
-  <div class="card" style="width: 70%; height:20%; margin-down:2.5%; margin-left:5%;">
+  <div class="card" style="width: 70%; height:18%; margin-down:5%; margin-left:15%;">
     <div class="card-header">
       <%= crawling[i].title %>
     </div>
@@ -24,16 +23,16 @@
        <a class="btn btn-dark" alt="<%= crawling[i].href %>" onclick="window.open('<%= crawling[i].href %>','자세히','widhth=1000, height=500,location=no,status=no,scrollbars=no');" style="color:#ffffff;">자세히 보기</a>
     </div>
   </div>
-
+<br>
   <% } %>
 </div>
 <div class="col-lg-3 col-6">
-    <a>   # 맛집 </a>
+    <div class="alert aelrt-secondary" role="alert"># 맛집</div>
     <br>
     <br>
 <% for(var i=0; i<5; i++) { %>
 
-<div class="card" style="width: 70%; height:20%; margin-down:2.5%; margin-left:5%;">
+<div class="card" style="width: 70%; height:18%; margin-down:5%; margin-left:15%;">
   <div class="card-header">
     <%= crawling2[i].title %>
   </div>
@@ -47,6 +46,7 @@
 
 </div>
 </div>
+<br>
 <% } %>
 </div>
 <div class="col-lg-5 col-12">
@@ -85,14 +85,17 @@
 
 
 <script>
-function enterSearch() {
-    if(event.keyCode == 13){
-        myFunction();  // 실행할 이벤트
-    }
-}
 function myFunction() {
     var x = document.getElementById("text").value;
     //window.location.href = "https://store.naver.com/restaurants/list?page=1&query="+x;
     window.open('https://store.naver.com/restaurants/list?page=1&query='+'<%= gugun %>' + x,x,'widhth=1000, height=500,location=no,status=no,scrollbars=no');
 }
+function enterSearch() {
+    if(event.keyCode == 13){
+        myFunction();  // 실행할 이벤트
+    }
+}
+$('document').ready(function() {
+enterSearch();
+});
 </script>

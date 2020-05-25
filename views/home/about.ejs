@@ -17,7 +17,7 @@
         <a class="col-lg-3"></a>
         <select class="col-lg-3 d-block" for="sidoname" name="sido1" id="sido1" ></select>
         <select class="col-lg-3 d-block" for="gugunname"name="gugun1" id="gugun1" ></select>
-        <button class="button col-lg-3" onclick="changediv()">검색</button>
+        <button class="button col-lg-3" onclick="changediv()" style="font-size:20px; font-weight:bold;">검색</button>
       </div>
           </div>
 
@@ -27,26 +27,24 @@
 
 
                     <div class="list-group">
-                        <a class="list-group-item list-group-item-action crawlingfont" href="#">
-                            <% if(option == 'categori') {%>
-                              FourSquare 분석
-                            <% } else if(option =='top10') { %>
-                              Twitter 분석
-                            <% } else if(option == 'hotplace') { %>
-                              Categori별 분석
-                            <% } else { %>
-                                <%= option %>
-                              <% } %>
+                      <% if(option == 'top10') { %>
+                       <a class="list-group-item list-group-item-action crawlingfont" href="top10?sido=<%= sido %>&gugun=<%= gugun %>" style="background:#292b2c;  color:#fff;">트윗량TopN</a>
+                     <% } else { %>
+                       <a class="list-group-item list-group-item-action crawlingfont" href="top10?sido=<%= sido %>&gugun=<%= gugun %>">트윗량TopN</a>
+                     <% }  %>
 
-                        </a>
+                     <% if(option == 'categori') { %>
+                       <a class="list-group-item list-group-item-action crawlingfont" href="categori?sido=<%= sido %>&gugun=<%= gugun %>" style="background:#292b2c;  color:#fff;">카테고리별 분석 </a>
+                     <% } else { %>
+                       <a class="list-group-item list-group-item-action crawlingfont" href='categori?sido=<%= sido %>&gugun=<%= gugun %>'>카테고리별 분석 </a>
+                     <% }  %>
 
-                        <a class="list-group-item list-group-item-action crawlingfont" href="top10?sido=<%= sido %>&gugun=<%= gugun %>">트윗량TopN</a>
+                     <% if(option == 'hotplace') { %>
+                       <a class="list-group-item list-group-item-action crawlingfont" href="hotplace?sido=<%= sido %>&gugun=<%= gugun %>" style="background:#292b2c;  color:#fff;">카테고리 순위</a>
+                     <% } else { %>
+                       <a class="list-group-item list-group-item-action crawlingfont" href='hotplace?sido=<%= sido %>&gugun=<%= gugun %>'>카테고리 순위</a>
+                     <% }  %>
 
-
-                        <a class="list-group-item list-group-item-action crawlingfont" href='categori?sido=<%= sido %>&gugun=<%= gugun %>'>카테고리별 분석 </a>
-
-
-                    <a class="list-group-item list-group-item-action crawlingfont" href="hotplace?sido=<%= sido %>&gugun=<%= gugun %>">카테고리 순위</a>
                   </div>
 
 
@@ -70,14 +68,14 @@
 
 
 
-      <div class="col-12 alert alert-warning alert-dismissible fade show" role="alert">
+      <div class="col-12 alert alert-danger alert-dismissible fade show" role="alert">
         죄송합니다! <strong>지역을 올바르게 선택</strong>하신 후에 다시한번 검색해주시면 감사하겠습니다.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <% } else if(option == 'cerror') { %>
-  <div class="col-12 alert alert-warning alert-dismissible fade show" role="alert">
+  <div class="col-12 alert alert-danger alert-dismissible fade show" role="alert">
     죄송합니다! <strong>'전체'</strong>항목에서는 카테고리별 분석을 지원하지 않습니다.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -126,20 +124,20 @@
   <script>
 
   $('document').ready(function() {
-   var area0 = ["지역 구분","서울","용인","인천","안산","남양주","가평","고양","수원","강릉","대전","대구","전주","부산","제주"];
+   var area0 = ["지역 구분","서울시","용인시","인천시","안산시","남양주시","가평군","고양시","수원시","강릉시","대전시","대구시","전주시","부산시","제주도"];
     var area1 = ["전체","가로수길","동대문","북촌한옥마을","압구정","이태원","인사동","삼성동","서초구","서울역","신촌"];
-     var area2 = ["전체","포곡읍"];
-     var area3 = ["전체","간석동","부평역","용현동"];
+     var area2 = ["전체","에버랜드"];
+     var area3 = ["전체","인천시청역","부평역","인하대"];
      var area4 = ["전체","고잔역","중앙역","한대앞역"];
      var area5 = ["전체","북한강","퇴계원","호평동"];
      var area6 = ["전체","남이섬","아침고요수목원","쁘띠프랑스"];
-     var area7 = ["전체","킨텍스","종합운동장","일산호수","일산 백석동"]; //고양
+     var area7 = ["전체","킨텍스","종합운동장","일산호수공원","일산 백석동"]; //고양
      var area8 = ["전체","수원역","아주대","인계동","장안구"];
-     var area9 = ["전체","강릉시","경포해변"];
-     var area10 = ["전체","서대전역","둔산동","용천동","대전궁동","탄방동","괴정동","대전역"];
-     var area11 = ["전체","대구중앙로","동성로","동대구역","수성구","계명대","두류동","수성구"];
-     var area12 = ["전체","전북대학교","전주대학교","월드컵경기장","효자공원","전주한옥마을"];
-     var area13 = ["전체","부산역","남천동","서면","부산교대역","센텀시티","해운대"];
+     var area9 = ["전체","강릉시내","경포대"];
+     var area10 = ["전체","서대전역","시청","대전터미널","충남대","한남대","가장동","중앙로"];
+     var area11 = ["전체","대구중앙로","동성로","동대구역","수성구","계명대","두류동","수성"];
+     var area12 = ["전체","전북대","전주대","전주월드컵경기장","완산구","전주한옥마을"];
+     var area13 = ["전체","중앙동","남천동","서면","교대역","센텀시티","해운대"];
      var area14 = ["전체","제주시","서귀포시"];
 
 

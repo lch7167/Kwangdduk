@@ -196,7 +196,7 @@ router.get('/top10',function(req,res,next){
 
 router.get('/hotplace',function(req,res,next){
   var query_sido = req.query.sido;
-  var query_gugun = change_for_crawling(req.query.sido,req.query.gugun);
+  var query_gugun = req.query.gugun;
   var query_gugun_for_path = req.query.gugun;
 
   if(query_sido == 'unknown' || query_sido =='지역 구분'){
@@ -216,6 +216,7 @@ router.get('/hotplace',function(req,res,next){
   let query2_value = 'false';
   var query3_value = 'false';
   const log = console.log;
+  log("Query::"+findQuery(query_sido,query_gugun));
 
   var tasks = [
       function (callback) {
@@ -225,8 +226,7 @@ router.get('/hotplace',function(req,res,next){
               const getHtml = async () => {
                 try {
                   log('0');
-                  return await axios.get('https://search.naver.com/search.naver?query=' +  urlencode(query_gugun) + urlencode(query_category));
-
+                  return await axios.get("https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q="+ urlencode(findQuery(query_sido,query_gugun)) + urlencode('맛집'));
                 } catch (error) {
                   console.error("error timing" + error);
                 }
@@ -235,13 +235,14 @@ router.get('/hotplace',function(req,res,next){
                     .then(html => {
                       let ulList = [];
                       let $ = cheerio.load(html.data);
-                      let $bodyList = $("div.list_area ul").children("li");
+                      const $bodyList = $("div.wrap_place ul").children("li");
 
                       $bodyList.each(function(i, elem) {
                         ulList[i] = {
-                         title: $(this).find('a.name').attr('title'),
-                         img : $(this).find('div.thumb img').attr('src'),
-                         href: $(this).find('a.name').attr('href')
+                            title:$(this).find('a.fn_tit').text(),
+                            href: $(this).find('a.fn_tit').attr('href'),
+                            img: $(this).find('div.wrap_thumb img').attr('src'),
+                            address: $(this).find('dt.cont').text()
                         };
 
                 //          const bookJson = JSON.stringify(ulList[i]);
@@ -270,7 +271,7 @@ router.get('/hotplace',function(req,res,next){
               const getHtml2 = async () => {
                 try {
                   log('5');
-                  return await axios.get('https://search.naver.com/search.naver?query=' +  urlencode(query_gugun) + urlencode('맛집'));
+                  return await axios.get("https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q="+ urlencode(findQuery(query_sido,query_gugun)) + urlencode('맛집'));
                   log('https://search.naver.com/search.naver?query=' + urlencode(query_sido) + urlencode(query_category));
                 } catch (error) {
                   console.error("error timing" + error);
@@ -280,13 +281,14 @@ router.get('/hotplace',function(req,res,next){
                     .then(html => {
                       let ulList = [];
                       let $ = cheerio.load(html.data);
-                      let $bodyList = $("div.list_area ul").children("li");
+                      let $bodyList = $("div.wrap_place ul").children("li");
                       log('6');
                       $bodyList.each(function(i, elem) {
                         ulList[i] = {
-                         title: $(this).find('a.name').attr('title'),
-                         img : $(this).find('div.thumb img').attr('src'),
-                         href: $(this).find('a.name').attr('href')
+                            title:$(this).find('a.fn_tit').text(),
+                            href: $(this).find('a.fn_tit').attr('href'),
+                            img: $(this).find('div.wrap_thumb img').attr('src'),
+                            address: $(this).find('dt.cont').text()
                         };
 
                 //          const bookJson = JSON.stringify(ulList[i]);
@@ -428,122 +430,180 @@ const writeFile = (path, data, opts = 'utf8') =>
   }
 function change_sido_KtoE(k_sido){
 
-  if(k_sido == '서울'){
+  if(k_sido == '서울시'){
     return 'seoul';
-  } else if(k_sido=='용인'){
+  } else if(k_sido=='용인시'){
     return 'yongin';
-  } else if(k_sido=='인천'){
+  } else if(k_sido=='인천시'){
     return 'incheon';
-  } else if(k_sido=='안산'){
+  } else if(k_sido=='안산시'){
     return 'ansan';
-  }else if(k_sido=='남양주'){
+  }else if(k_sido=='남양주시'){
     return 'namyangju';
-  }else if(k_sido=='가평'){
+  }else if(k_sido=='가평군'){
     return 'gapyung';
-  }else if(k_sido=='고양'){
+  }else if(k_sido=='고양시'){
     return 'goyang';
-  }else if(k_sido=='수원'){
+  }else if(k_sido=='수원시'){
     return 'suwon';
-  }else if(k_sido=='강릉'){
+  }else if(k_sido=='강릉시'){
     return 'gangleung';
-  }else if(k_sido=='대구'){
+  }else if(k_sido=='대구시'){
     return 'daegu';
-  }else if(k_sido=='전주'){
+  }else if(k_sido=='전주시'){
     return 'jeonju';
-  }else if(k_sido=='부산'){
+  }else if(k_sido=='부산시'){
     return 'busan';
-  }else if(k_sido=='제주'){
+  }else if(k_sido=='제주도'){
     return 'jeju'
-  }else
+  }else if(k_sido=='대전시'){
+    return 'daejeon'
+  }
+  else
   {
       return 'seoul';
-  };
+  }
 
+}
+function findQuery(query_sido, query_gugun){
+
+
+if(query_sido == '부산시' && query_gugun =='서면'){
+var result = query_gugun;
+return result;
+}
+else if(query_gugun =='전체'){
+  var result = query_sido + ' ';
+  return result;
+}
+else if(query_gugun =='남이섬'){
+var result = query_gugun;
+return result;
+}
+else if(query_gugun =='아침고요수목원'){
+  var result = query_gugun;
+  return result;
+
+}
+else if(query_gugun == '쁘띠프랑스'){
+var result = query_gugun;
+return result;
+}
+else if(query_sido =='강릉시' && query_gugun =='강릉시내'){
+var result = query_gugun;
+return result;
+}
+else if(query_sido == '안산시' && query_gugun =='한대앞'){
+  var result = query_gugun;
+  return result;
+}
+else if(query_sido =='고양시' && query_gugun=='일산호수공원'){
+  var result = query_gugun;
+  return result;
+}
+else if(query_sido =='고양시' && query_gugun=='파주출판단지'){
+  var result = query_gugun;
+  return result;
+}
+else if(query_sido =='전주시' && query_gugun =='전주대'){
+  var result = query_gugun;
+  return result;
+}
+else if(query_sido =='남양주시' && query_gugun =='북한강'){
+  var result = query_gugun;
+  return result;
+}
+else{
+  var result = query_sido + ' ' + query_gugun;
+  return result;
+}
 }
 function match_gugun_list(k_sido, k_gugun){
 
-   var area1 = ["전체","가로수길","동대문","북촌한옥마을","압구정","이태원","인사동","삼성동","서초구","서울역","신촌"];
-    var area2 = ["전체","포곡읍"];
-    var area3 = ["전체","간석동","부평역","용현동"];
-    var area4 = ["전체","고잔역","중앙역","한대앞역"];
-    var area5 = ["전체","북한강","퇴계원","호평동"];
-    var area6 = ["전체","남이섬","아침고요수목원","쁘띠프랑스"];
-    var area7 = ["전체","킨텍스","종합운동장","일산호수","일산 백석동"]; //고양
-    var area8 = ["전체","수원역","아주대","인계동","장안구"];
-    var area9 = ["전체","강릉시","경포해변"];
-    var area10 = ["전체","서대전역","둔산동","용천동","대전궁동","탄방동","괴정동","대전역"];
-    var area11 = ["전체","대구중앙로","동성로","동대구역","수성구","계명대","두류동","수성구"];
-    var area12 = ["전체","전북대학교","전주대학교","월드컵경기장","효자공원","전주한옥마을"];
-    var area13 = ["전체","부산역","남천동","서면","부산교대역","센텀시티","해운대"];
-    var area14 = ["전체","제주시","서귀포시"];
+  var area0 = ["지역 구분","서울시","용인시","인천시","안산시","남양주시","가평군","고양시","수원시","강릉시","대전시","대구시","전주시","부산","제주도"];
+  var area1 = ["전체","가로수길","동대문","북촌한옥마을","압구정역","이태원","종각","삼성동","서초구","서울역","신촌"];
+   var area2 = ["전체","에버랜드"]; //용인시
+   var area3 = ["전체","인천시청역","부평역","인하대"]; //인천시
+   var area4 = ["전체","고잔역","중앙역","한대앞역"]; //안산시
+   var area5 = ["전체","북한강","퇴계원","호평동"]; // 남양주시
+   var area6 = ["전체","남이섬","아침고요수목원","쁘띠프랑스"]; //가평군
+   var area7 = ["전체","킨텍스","종합운동장","일산호수공원","백석동"]; //고양시
+   var area8 = ["전체","수원역","아주대","인계동","장안구"]; // 수원시
+   var area9 = ["전체","강릉시내","경포대"]; //강릉시
+   var area10 = ["전체","서대전역","시청","대전터미널","충남대","한남대","가장동","중앙로"]; //대전시
+   var area11 = ["전체","대구중앙로","동성로","동대구역","수성구","계명대","두류동","수성"]; //대구시
+   var area12 = ["전체","전북대","전주대","전주월드컵경기장","완산구","전주한옥마을"]; // 전주시
+   var area13 = ["전체","중앙동","남천동","서면","교대역","센텀시티","해운대"]; //부산시
+   var area14 = ["전체","제주시","서귀포시"]; //제주도시
 
-   if(k_sido == '서울'){
+
+  if(k_sido == '서울시'){
      var idx = area1.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   } else if(k_sido=='용인'){
+   } else if(k_sido=='용인시'){
      var idx = area2.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   } else if(k_sido=='인천'){
+   } else if(k_sido=='인천시'){
      var idx = area3.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   } else if(k_sido=='안산'){
+   } else if(k_sido=='안산시'){
      var idx = area4.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   }else if(k_sido=='남양주'){
+   }else if(k_sido=='남양주시'){
      var idx = area5.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   }else if(k_sido=='가평'){
+   }else if(k_sido=='가평군'){
      var idx = area6.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   }else if(k_sido=='고양'){
+   }else if(k_sido=='고양시'){
      var idx = area7.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   }else if(k_sido=='수원'){
+   }else if(k_sido=='수원시'){
      var idx = area8.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   }else if(k_sido=='강릉'){
+   }else if(k_sido=='강릉시'){
      var idx = area9.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
 
-   }else if(k_sido=='대전'){
+   }else if(k_sido=='대전시'){
      var idx = area10.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   }else if(k_sido=='대구'){
+   }else if(k_sido=='대구시'){
      var idx = area11.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   }else if(k_sido=='전주'){
+   }else if(k_sido=='전주시'){
      var idx = area12.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   }else if(k_sido=='부산'){
+   }else if(k_sido=='부산시'){
      var idx = area13.findIndex((item, idx) =>{
        return item == k_gugun;
      });
      return idx;
-   }else if(k_sido=='제주'){
+   }else if(k_sido=='제주도'){
      var idx = area14.findIndex((item, idx) =>{
        return item == k_gugun;
      });
@@ -555,17 +615,12 @@ function match_gugun_list(k_sido, k_gugun){
 
 
 }
-function find_selected(arr , k_gugun){
-  for(var i=0; i<arr.length()-1; i++){
-
-  }
-}
 function change_for_crawling(k_sido,k_gugun){
   if(k_gugun == '에버랜드'){
     return '포곡읍';
   }
   else if(k_gugun =='전체'){
-    return k_sido;
+    return ' ';
   }
   else if(k_gugun =='인천시청역'){
     return '간석동';
