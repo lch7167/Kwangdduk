@@ -18,7 +18,7 @@
     <img class="card-img-top" src="<%= crawling[i].img %>" alt="Card image cap">
     <% } %>
     <div class="card-body">
-       <a class="btn btn-dark" href="<%= crawling[i].href %>" alt="<%= crawling[i].href %>" style="color:#ffffff;">자세히</a>
+       <a class="btn btn-dark" alt="<%= crawling[i].href %>" onclick="window.open('<%= crawling[i].href %>','자세히','widhth=1000, height=500,location=no,status=no,scrollbars=no');" style="color:#ffffff;">자세히</a>
     </div>
   </div>
 <br>
