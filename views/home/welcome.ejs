@@ -3,109 +3,110 @@
   <head>
     <%- include('../partials/head') %>
     <style>
-        .image{
-            background: url(https://www.openbusinesscouncil.org/wp-content/uploads/2019/09/BigData.jpg) no-repeat center center;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            background-position: center;
-            height: calc(105vh - 54px);
-            min-height: 200px;
-        }
-        .container-fluid{
-          background: url(slideshow2.jpg) no-repeat center center fixed;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: 100% 100%;
-          height:800px;
-        }
+      .image {
+        background: url(https://www.openbusinesscouncil.org/wp-content/uploads/2019/09/BigData.jpg)
+          no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-position: center;
+        height: calc(105vh - 54px);
+        min-height: 200px;
+      }
+      .container-fluid {
+        background: url(slideshow2.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: 100% 100%;
+        height: 800px;
+      }
 
-  .carousel-item > img {
-    height: 600px;
-    background: no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
+      .carousel-item > img {
+        height: 600px;
+        background: no-repeat center center scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
 
+      .lnr {
+        display: inline-block;
+        fill: currentColor;
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.05em;
+        stroke-width: 1;
+      }
 
-  .lnr {
-    display: inline-block;
-    fill: currentColor;
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.05em;
-    stroke-width: 1;
-  }
+      .services-icon {
+        margin-bottom: 20px;
+        font-size: 30px;
+      }
+      bgc2,
+      .vLine,
+      .hLine {
+        background-color: #0f52ba;
+      }
 
-  .services-icon {
-    margin-bottom: 20px;
-    font-size: 30px;
-  }
-  bgc2, .vLine, .hLine {
-    background-color: #0F52BA;
-  }
-
-  .quote-icon {
-    font-size: 40px;
-    margin-bottom: 20px;
-  }
-  .services-icon {
-    font-size: 60px;
-    margin-left: 2rem;
-  }
+      .quote-icon {
+        font-size: 40px;
+        margin-bottom: 20px;
+      }
+      .services-icon {
+        font-size: 60px;
+        margin-left: 2rem;
+      }
     </style>
   </head>
   <body style="margin-bottom: 0px">
-    <div class="image">
-    <%- include('../partials/nav') %>
-    </div>
+    <div class="image"><%- include('../partials/nav') %></div>
 
     <section class="py-5 text-center">
-    <div class="container">
-      <h2 class="text-center">인사 시스템 코리아</h2>
-      <p class="text-muted mb-5 text-center">이 페이지는 빅데이터 분석을 통한, <br>대한민국 각 지역별 HotSpot을 제공합니다.</p>
-      <div class="row">
-        <div class="col-6 col-lg-3 mb-3">
-          <svg class="lnr text-primary services-icon">
+      <div class="container">
+        <h2 class="text-center">인사 시스템 코리아</h2>
+        <p class="text-muted mb-5 text-center">
+          이 페이지는 빅데이터 분석을 통한, <br />대한민국 각 지역별 HotSpot을
+          제공합니다.
+        </p>
+        <div class="row">
+          <div class="col-6 col-lg-3 mb-3">
+            <svg class="lnr text-primary services-icon">
+              <img src="twitter.png" class="d-block w-100"></img>
+            </svg>
+            <h6>Twitter 빅데이터</h6>
+            <p class="text-muted">385,142개의 Twitter 빅데이터를 수집</p>
+          </div>
+          <div class="col-6 col-lg-3 mb-3">
+            <svg class="lnr text-primary services-icon">
+              <img src="foursquare.png" class="d-block w-100"></img>
+            </svg>
+            <h6>Foursquare를 통한 카테고리 분석</h6>
+            <p class="text-muted">261,505개의 포스퀘어 데이터를 수집</p>
+          </div>
+          <div class="col-6 col-lg-3 mb-3">
+            <svg class="lnr text-primary services-icon">
+              <img src="brain.png" class="d-block w-100"></img>
+            </svg>
+            <h6>수집된 데이터를 분석</h6>
+            <p class="text-muted">
+              수집한 빅데이터를 활용하여 의미있는 결과 도출
+            </p>
+          </div>
 
-            <img src="twitter.png" class="d-block w-100"></img>
-          </svg>
-          <h6>Twitter 빅데이터</h6>
-          <p class="text-muted">385,142개의 Twitter 빅데이터를 수집</p>
+          <div class="col-6 col-lg-3 mb-3">
+            <svg class="lnr text-primary services-icon">
+              <img src="map.png" class="d-block w-100"></img>
+            </svg>
+            <h6>Map을 통한 Hotspot 분석</h6>
+            <p class="text-muted">Map을 통해 한눈에 알아보기 편한 Hotspot</p>
+          </div>
         </div>
-        <div class="col-6 col-lg-3 mb-3">
-          <svg class="lnr text-primary services-icon">
-            <img src="foursquare.png" class="d-block w-100"></img>
-          </svg>
-          <h6>Foursquare를 통한 카테고리 분석</h6>
-          <p class="text-muted">261,505개의 포스퀘어 데이터를 수집</p>
-        </div>
-        <div class="col-6 col-lg-3 mb-3">
-          <svg class="lnr text-primary services-icon">
-            <img src="brain.png" class="d-block w-100"></img>
-          </svg>
-          <h6>수집된 데이터를 분석</h6>
-          <p class="text-muted">수집한 빅데이터를 활용하여 의미있는 결과 도출</p>
-        </div>
-
-        <div class="col-6 col-lg-3 mb-3">
-          <svg class="lnr text-primary services-icon">
-            <img src="map.png" class="d-block w-100"></img>
-          </svg>
-          <h6>Map을 통한 Hotspot 분석</h6>
-          <p class="text-muted">Map을 통해 한눈에 알아보기 편한 Hotspot</p>
-        </div>
-
-
       </div>
-    </div>
-</section>
-<br>
-<%- include('../partials/info') %>
-
+    </section>
+    <br />
+    <%- include('../partials/info') %>
   </body>
 </html>
