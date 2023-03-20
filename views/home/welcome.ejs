@@ -22,47 +22,46 @@
           height:800px;
         }
 
-  .carousel-item > img {
-    height: 600px;
-    background: no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
+      .carousel-item > img {
+        height: 600px;
+        background: no-repeat center center scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
 
+      .lnr {
+        display: inline-block;
+        fill: currentColor;
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.05em;
+        stroke-width: 1;
+      }
 
-  .lnr {
-    display: inline-block;
-    fill: currentColor;
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.05em;
-    stroke-width: 1;
-  }
+      .services-icon {
+        margin-bottom: 20px;
+        font-size: 30px;
+      }
+      bgc2,
+      .vLine,
+      .hLine {
+        background-color: #0f52ba;
+      }
 
-  .services-icon {
-    margin-bottom: 20px;
-    font-size: 30px;
-  }
-  bgc2, .vLine, .hLine {
-    background-color: #0F52BA;
-  }
-
-  .quote-icon {
-    font-size: 40px;
-    margin-bottom: 20px;
-  }
-  .services-icon {
-    font-size: 60px;
-    margin-left: 2rem;
-  }
+      .quote-icon {
+        font-size: 40px;
+        margin-bottom: 20px;
+      }
+      .services-icon {
+        font-size: 60px;
+        margin-left: 2rem;
+      }
     </style>
   </head>
   <body style="margin-bottom: 0px">
-    <div class="image">
-    <%- include('../partials/nav') %>
-    </div>
+    <div class="image"><%- include('../partials/nav') %></div>
 
     <section class="py-5 text-center">
     <div class="container">
@@ -102,11 +101,9 @@
 
 
       </div>
-    </div>
-</section>
-<br>
-<%- include('../partials/info') %>
-
+    </section>
+    <br />
+    <%- include('../partials/info') %>
   </body>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
