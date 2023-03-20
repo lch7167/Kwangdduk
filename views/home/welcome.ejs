@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%- include('../partials/head') %>
+    <title>광뚝</title>
     <style>
         .image{
-            background: url(https://www.openbusinesscouncil.org/wp-content/uploads/2019/09/BigData.jpg) no-repeat center center;
+            background: url('/BigData.webp') no-repeat center center;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -72,21 +72,21 @@
         <div class="col-6 col-lg-3 mb-3">
           <svg class="lnr text-primary services-icon">
 
-            <img src="twitter.png" class="d-block w-100"></img>
+            <img src="twitter.png" class="d-block w-100" height="auto" width="100%" alt=""></img>
           </svg>
           <h6>Twitter 빅데이터</h6>
           <p class="text-muted">385,142개의 Twitter 빅데이터를 수집</p>
         </div>
         <div class="col-6 col-lg-3 mb-3">
           <svg class="lnr text-primary services-icon">
-            <img src="foursquare.png" class="d-block w-100"></img>
+            <img src="foursquare.png" class="d-block w-100" height="auto" width="100%" alt=""></img>
           </svg>
           <h6>Foursquare를 통한 카테고리 분석</h6>
           <p class="text-muted">261,505개의 포스퀘어 데이터를 수집</p>
         </div>
         <div class="col-6 col-lg-3 mb-3">
           <svg class="lnr text-primary services-icon">
-            <img src="brain.png" class="d-block w-100"></img>
+            <img src="brain.png" class="d-block w-100" height="auto" width="100%" alt=""></img>
           </svg>
           <h6>수집된 데이터를 분석</h6>
           <p class="text-muted">수집한 빅데이터를 활용하여 의미있는 결과 도출</p>
@@ -94,7 +94,7 @@
 
         <div class="col-6 col-lg-3 mb-3">
           <svg class="lnr text-primary services-icon">
-            <img src="map.png" class="d-block w-100"></img>
+            <img src="map.png" class="d-block w-100" height="auto" width="100%" alt=""></img>
           </svg>
           <h6>Map을 통한 Hotspot 분석</h6>
           <p class="text-muted">Map을 통해 한눈에 알아보기 편한 Hotspot</p>
@@ -108,4 +108,17 @@
 <%- include('../partials/info') %>
 
   </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- web font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- my css -->
+  <link rel="stylesheet" href="/css/master.css">
+
+  <!-- my js -->
+  <script src="/js/script.js"></script>
 </html>
